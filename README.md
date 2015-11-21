@@ -26,3 +26,13 @@ When we pass a callback function as an argument to another function, the callbac
   * We can fix the preceding problem by using the Call or Apply function. Call and Apply are used to set the this object inside the function and to pass arguments to the functions.
 * Multiple Callback Functions Allowed
   * We can pass more than one callback functions into the parameter of a function, just like we can pass more than one variable.
+  
+### “Callback Hell” Problem And Solution
+In asynchronous code execution, which is simply execution of code in any order, sometimes it is common to have numerous levels of callback functions to the extent that it is messy and hard to comprehend.
+ 
+Here are two solutions to this problem:
+ * Name your functions and declare them and pass just the name of the function as the callback, instead of defining an anonymous function in the parameter of the main function.
+ * Modularity: Separate your code into modules, so you can export a section of code that does a particular job. Then you can import that module into your larger application.
+     
+  
+  
