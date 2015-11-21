@@ -48,4 +48,5 @@ Here are two solutions to this problem:
 * For Generalization: code conciseness
 
 ## Links
-[Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
+* [Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
+* [Callback Hell](http://callbackhell.com/)
