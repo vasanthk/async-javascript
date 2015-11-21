@@ -34,20 +34,20 @@ Here are two solutions to this problem:
  * Name your functions and declare them and pass just the name of the function as the callback, instead of defining an anonymous function in the parameter of the main function. It makes code easier to read and also helps to get better stack traces when exeptions happen.
  * Modularity: Separate your code into modules, so you can export a section of code that does a particular job. Then you can import that module into your larger application.
      
-## Callback functions - Benefits
+### Callback functions - Benefits
 * Do not repeat code (DRY—Do Not Repeat Yourself)
 * Implement better abstraction where you can have more generic functions that are versatile (can handle all sorts of functionalities)
 * Have better maintainability
 * Have more readable code
 * Have more specialized functions.  
 
-## Callback functions - Use cases
+### Callback functions - Use cases
 * For asynchronous execution (such as reading files, and making HTTP requests)
 * In Event Listeners/Handlers
 * In setTimeout and setInterval methods
 * For Generalization: code conciseness
 
-## Links
+### Links
 * [Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
 * [Callback Hell](http://callbackhell.com/)
 * [Avoiding Callback hell in Node.js](http://stackabuse.com/avoiding-callback-hell-in-node-js/)

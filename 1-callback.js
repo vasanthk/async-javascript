@@ -34,3 +34,90 @@ getData(function (a) {
   });
 });
 
+/**
+ * NAME YOUR FUNCTIONS
+ *
+ * * Easier to read.
+ * * When exceptions happen you will get stacktraces that reference actual function names instead of "anonymous".
+ */
+
+// Anonymous function
+var form = document.querySelector('form');
+form.onsubmit = function (submitEvent) {
+  var name = document.querySelector('input').value;
+  request({
+    uri: "http://example.com/upload",
+    body: name,
+    method: "POST"
+  }, function (err, response, body) {
+    var statusMessage = document.querySelector('.status');
+    if (err) return statusMessage.value = err;
+    statusMessage.value = body;
+  })
+};
+
+// Named functions
+var form = document.querySelector('form');
+form.onsubmit = function formSubmit(submitEvent) {
+  var name = document.querySelector('input').value;
+  request({
+    uri: "http://example.com/upload",
+    body: name,
+    method: "POST"
+  }, function postResponse(err, response, body) {
+    var statusMessage = document.querySelector('.status');
+    if (err) return statusMessage.value = err;
+    statusMessage.value = body;
+  })
+};
+
+/**
+ * KEEP YOUR CODE SHALLOW
+ *
+ * * Easier to edit, refactor and hack on later
+ */
+
+// Get rid of triple level nesting which was there earlier.
+function formSubmit(submitEvent) {
+  var name = document.querySelector('input').value;
+  request({
+    uri: "http://example.com/upload",
+    body: name,
+    method: "POST"
+  }, postResponse)
+}
+
+function postResponse(err, response, body) {
+  var statusMessage = document.querySelector('.status');
+  if (err) return statusMessage.value = err;
+  statusMessage.value = body
+}
+
+document.querySelector('form').onsubmit = formSubmit;
+
+/**
+ * MODULARIZE
+ *
+ * * Easier to understand, reuse without duplication.
+ */
+
+function formSubmit(submitEvent) {
+  var name = document.querySelector('input').value;
+  request({
+    uri: "http://example.com/upload",
+    body: name,
+    method: "POST"
+  }, postResponse)
+}
+
+function postResponse(err, response, body) {
+  var statusMessage = document.querySelector('.status');
+  if (err) return statusMessage.value = err;
+  statusMessage.value = body;
+}
+
+exports.submit = formSubmit;  // CommonJS module system
+
+// USAGE
+var formUploader = require('formuploader');
+document.querySelector('form').onsubmit = formUploader.submit;
