@@ -50,3 +50,4 @@ Here are two solutions to this problem:
 ## Links
 * [Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
 * [Callback Hell](http://callbackhell.com/)
+* [Avoiding Callback hell in Node.js](http://stackabuse.com/avoiding-callback-hell-in-node-js/)
