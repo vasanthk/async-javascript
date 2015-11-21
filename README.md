@@ -15,3 +15,14 @@ And since the containing function has the callback function in its parameter as 
 
 When we pass a callback function as an argument to another function, the callback is executed at some point inside the containing function’s body just as if the callback were defined in the containing function. This means the callback is a closure. As we know, closures have access to the containing function’s scope, so the callback function can access the containing functions’ variables, and even the variables from the global scope.
 
+### Basic Principles when Implementing Callback Functions
+* Use Named OR Anonymous Functions as Callbacks
+* Can pass Parameters to Callback Functions
+  * Since the callback function is just a normal function when it is executed, we can pass parameters to it. We can pass any of the containing function’s properties (or global properties) as parameters to the callback function.
+* Make Sure Callback is a Function Before Executing It
+  * It is always wise to check that the callback function passed in the parameter is indeed a function before calling it. Also, it is good practice to make the callback function optional.
+* Use the Call or Apply Function To Preserve `this`
+  * When the callback function is a method that uses the this object, we have to modify how we execute the callback function to preserve the this object context. Or else the this object will either point to the global window object (in the browser), if callback was passed to a global function. Or it will point to the object of the containing method.
+  * We can fix the preceding problem by using the Call or Apply function. Call and Apply are used to set the this object inside the function and to pass arguments to the functions.
+* Multiple Callback Functions Allowed
+  * We can pass more than one callback functions into the parameter of a function, just like we can pass more than one variable.
