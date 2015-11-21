@@ -34,5 +34,16 @@ Here are two solutions to this problem:
  * Name your functions and declare them and pass just the name of the function as the callback, instead of defining an anonymous function in the parameter of the main function.
  * Modularity: Separate your code into modules, so you can export a section of code that does a particular job. Then you can import that module into your larger application.
      
-  
+## Callback functions - Benefits
+* Do not repeat code (DRY—Do Not Repeat Yourself)
+* Implement better abstraction where you can have more generic functions that are versatile (can handle all sorts of functionalities)
+* Have better maintainability
+* Have more readable code
+* Have more specialized functions.  
+
+## Callback functions - Use cases
+* For asynchronous execution (such as reading files, and making HTTP requests)
+* In Event Listeners/Handlers
+* In setTimeout and setInterval methods
+* For Generalization: code conciseness
   
