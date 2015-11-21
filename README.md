@@ -46,4 +46,6 @@ Here are two solutions to this problem:
 * In Event Listeners/Handlers
 * In setTimeout and setInterval methods
 * For Generalization: code conciseness
-  
+
+## Links
+[Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
