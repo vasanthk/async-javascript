@@ -31,7 +31,7 @@ When we pass a callback function as an argument to another function, the callbac
 In asynchronous code execution, which is simply execution of code in any order, sometimes it is common to have numerous levels of callback functions to the extent that it is messy and hard to comprehend.
  
 Here are two solutions to this problem:
- * Name your functions and declare them and pass just the name of the function as the callback, instead of defining an anonymous function in the parameter of the main function.
+ * Name your functions and declare them and pass just the name of the function as the callback, instead of defining an anonymous function in the parameter of the main function. It makes code easier to read and also helps to get better stack traces when exeptions happen.
  * Modularity: Separate your code into modules, so you can export a section of code that does a particular job. Then you can import that module into your larger application.
      
 ## Callback functions - Benefits
