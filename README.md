@@ -136,3 +136,9 @@ There are four ways in which you can create generators:
   * yield can also receive a value from next() (via a parameter). That means that generators become data consumers that pause until a new value is pushed into them via next().
 * **Coroutines (data producers and consumers):** 
   * Given that generators are pausable and can be both data producers and data consumers, not much work is needed to turn them into coroutines (cooperatively multitasked tasks).    
+  
+### Processing asynchronously pushed data (Generators as observers)
+The fact that generators-as-observers pause while they wait for input makes them perfect for on-demand processing of data that is received asynchronously. The pattern for setting up a chain of generators for processing is as follows:
+* **First chain member:** A normal function that has a parameter target, which is the generator object of the next element in the chain of generators. The function makes an asynchronous request and pushes the results to the target via target.next().
+* **Intermediate chain members:** Generators that have a parameter target. They receive data via yield and send data via target.next().
+* **Last chain member:** A generator that has no parameter target and only receives data.   
