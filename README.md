@@ -82,3 +82,11 @@ Rejections will also finish the race, and the race promise will be rejected. Thi
 * [ES6 Promises](http://www.datchley.name/es6-promises/)
 * [Promise Patterns & Anti-Patterns](http://www.datchley.name/promise-patterns-anti-patterns/)
 * [What’s the deal with jQuery Deferred objects and Promises?](http://www.vasanthk.com/jquery-promises-and-deferred-objects/)
+
+## Generators (ES6)
+Generators, a new feature of ES6, are functions that can be paused and resumed. This helps with many applications: iterators, asynchronous programming, etc.
+
+Two important applications of generators are:
+* Implementing iterables
+* Blocking on asynchronous function calls
+
