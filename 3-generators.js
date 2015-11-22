@@ -11,7 +11,9 @@
 // The asterisk after `function` means that`objectEntries` is a generator
 function* objectEntries(obj) {
   // Reflect is a built-in object that provides methods for interceptable JavaScript operations.
-  let propKeys = Reflect.ownKeys(obj); // Returns an array of the target object's own (not inherited) property keys.
+  // Reflect.ownKeys returns an array of the target object's own (not inherited) property keys.
+  // https://twitter.com/nilssolanki/status/659839340592422912
+  let propKeys = Reflect.ownKeys(obj);
 
   for (let propKey of propKeys) {
     // `yield` returns a value and then pauses the generator. Later, the execution continues where it was previously paused.
