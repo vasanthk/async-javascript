@@ -222,3 +222,104 @@ yield (a + b + c);
 // Not as
 (yield a) + b + c;
 
+
+// Many operators bind more tightly than yield and you have to put yield in parentheses if you want to use it as an operand.
+console.log('Hello' + yield); // SyntaxError
+console.log('Hello' + yield 123); // SyntaxError
+console.log('Hello' + (yield)); // OK
+console.log('Hello' + (yield 123)); // OK
+
+
+/**
+ * return() terminates the generator
+ *
+ * return() performs a return at the location of the yield that led to the last suspension of the generator.
+ */
+
+function* genFunc1() {
+  try {
+    console.log('Started');
+    yield; // (A)
+  } finally {
+    console.log('Exiting');
+  }
+}
+
+let genObj1 = genFunc1();
+genObj1.next();
+// Started
+//{ value: undefined, done: false }
+
+genObj1.return('Result');
+// Exiting
+// { value: 'Result', done: true }
+
+
+// Preventing Termination
+// You can prevent return() from terminating the generator if you yield inside the finally clause
+function* genFunc2() {
+  try {
+    console.log('Started');
+    yield;
+  } finally {
+    yield 'Not done, yet!';
+  }
+}
+
+let genObj2 = genFunc2();
+
+genObj2.next();
+// Started
+// { value: undefined, done: false }
+
+// This time, return() does not exit the generator function. Accordingly, the property done of the object it returns is false.
+genObj2.return('Result');
+// { value: 'Not done, yet!', done: false }
+
+// You can invoke next() one more time. Similarly to non-generator functions,
+// the return value of the generator function is the value that was queued prior to entering the finally clause.
+genObj2.next();
+// { value: 'Result', done: true }
+
+
+// Returning from a newborn generator is allowed!
+function* genFunc() {}
+genFunc().return('yes');
+// { value: 'yes', done: true }
+
+
+
+/**
+ * throw() signals an error
+ *
+ * throw() throws an exception at the location of the yield that led to the last suspension of the generator.
+ */
+
+function* genFunc1() {
+  try {
+    console.log('Started');
+    yield; // (A)
+  } catch (error) {
+    console.log('Caught: ' + error);
+  }
+}
+
+
+// In the following interaction, we first use next() to start the generator and proceed until the yield in line (A).
+// Then we throw an exception from that location.
+let genObj1 = genFunc1();
+genObj1.next();
+// Started
+// { value: undefined, done: false }
+
+genObj1.throw(new Error('Problem!'));
+// Caught: Error: Problem!
+// { value: undefined, done: true }
+
+// The result of throw() (shown in the last line) stems from us leaving the function with an implicit return.
+
+
+// Throwing an exception in a newborn generator (that hasn’t started yet) is allowed:
+function* genFunc() {}
+genFunc().throw(new Error('Problem!'));
+// Error: Problem!
