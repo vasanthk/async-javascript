@@ -102,9 +102,10 @@ fetch('foo')
 
 
 // If the first .catch call didn’t return anything, then nothing would be printed.
-  fetch('foo')
+fetch('foo')
   .then(res => res.a.prop.that.does.not.exist)
-  .catch(err => {})
+  .catch(err => {
+  })
   .catch(err => console.error(err.message));
 // nothing happens
 
@@ -114,7 +115,8 @@ fetch('foo')
  */
 var p1 = fetch('foo');
 var p2 = p1.then(res => res.a.prop.that.does.not.exist);
-var p3 = p2.catch(err => {});
+var p3 = p2.catch(err => {
+});
 var p4 = p3.catch(err => console.error(err.message));
 
 /**
@@ -123,7 +125,7 @@ var p4 = p3.catch(err => console.error(err.message));
 new Promise(resolve => resolve()); // promise is fulfilled
 new Promise((resolve, reject) => reject()); // promise is rejected
 
-new Promise(resolve => resolve({ foo: 'bar' }))
+new Promise(resolve => resolve({foo: 'bar'}))
   .then(result => console.log(result));
 // <- { foo: 'bar' }
 
@@ -135,7 +137,7 @@ new Promise((resolve, reject) =>
 /**
  * It’s important to note that only the first call made to either resolve/reject will have an impact – once a promise is settled, it’s result can’t change
  */
-function resolveUnderThreeSeconds (delay) {
+function resolveUnderThreeSeconds(delay) {
   return new Promise(function (resolve, reject) {
     setTimeout(resolve, delay);
     setTimeout(reject, 3000);
@@ -207,7 +209,9 @@ Promise.resolve([1, 2, 3])
 // Interestingly, if a .catch branch goes smoothly without errors, then it will be fulfilled with the returned value.
 // The following piece of code takes an internal error and masks it behind a generic “Internal Server Error” message as to not leak off potentially dangerous information to its clients
 Promise.reject(new Error('Database ds.214.53.4.12 connection timeout!'))
-  .catch(error => { throw new Error('Internal Server Error') })
+  .catch(error => {
+    throw new Error('Internal Server Error')
+  })
   .catch(error => console.info(error));
 // <- Error: Internal Server Error
 
@@ -258,3 +262,20 @@ var p = Promise.race([
 ]);
 p.then(response => console.log(response));
 p.catch(error => console.log(error));
+
+
+/**
+ * How can I use Promises when most of the libraries out there exposes a callback interfaces only?
+ *
+ * Well, it is pretty easy - the only thing that you have to do is wrapping the callback the original function calls with a Promise
+ */
+function saveToTheDb(value) {
+  return new Promise(function (resolve, reject) {
+    db.values.insert(value, function (err, user) { // remember error first
+      if (err) {
+        return reject(err);
+      }
+      resolve(user);
+    })
+  });
+}
