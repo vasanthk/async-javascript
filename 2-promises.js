@@ -105,3 +105,12 @@ fetch('foo')
   .catch(err => {})
   .catch(err => console.error(err.message));
 // nothing happens
+
+/**
+ * CHAINED REFERENCES
+ * You can save a reference to any point in the promise chain.
+ */
+var p1 = fetch('foo');
+var p2 = p1.then(res => res.a.prop.that.does.not.exist);
+var p3 = p2.catch(err => {});
+var p4 = p3.catch(err => console.error(err.message));

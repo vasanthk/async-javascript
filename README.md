@@ -55,5 +55,7 @@ Here are two solutions to this problem:
 ## Promises
 Promises are usually vaguely defined as “a proxy for a value that will eventually become available”. They can be used for both synchronous and asynchronous code flows, although they make asynchronous flows easier to reason about.
 
+Promises can be chained “arbitrarily”, that is to say - you can save a reference to any point in the promise chain and then tack more promises on top of it. This is one of the fundamental points to understanding promises.
+
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
