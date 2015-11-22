@@ -83,6 +83,8 @@ co(function* () {
 });
 
 
+
+// 1. Generators as iterators (data production)
 /**
  * Recursion via yield*
  */
@@ -115,8 +117,8 @@ class BinaryTree {
     this.right = right;
   }
 
-  /** Prefix iteration */
-  * [Symbol.iterator]() {
+  // Prefix iteration
+  *[Symbol.iterator]() {
     yield this.value;
     if (this.left) {
       yield* this.left;
@@ -143,3 +145,18 @@ for (let x of tree) {
 // c
 // d
 // e
+
+
+/**
+ * You can only yield in generators -- yielding in callbacks doesn’t work
+ */
+function* genFunc() {
+  ['a', 'b'].forEach(x => yield x); // SyntaxError
+}
+
+// Refactored
+function* genFunc() {
+  for (let x of ['a', 'b']) {
+    yield x; // OK
+  }
+}
