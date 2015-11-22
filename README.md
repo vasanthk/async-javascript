@@ -51,3 +51,9 @@ Here are two solutions to this problem:
 * [Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
 * [Callback Hell](http://callbackhell.com/)
 * [Avoiding Callback hell in Node.js](http://stackabuse.com/avoiding-callback-hell-in-node-js/)
+
+## Promises
+Promises are usually vaguely defined as “a proxy for a value that will eventually become available”. They can be used for both synchronous and asynchronous code flows, although they make asynchronous flows easier to reason about.
+
+### Links
+* [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
