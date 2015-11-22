@@ -71,6 +71,9 @@ Promise.all has two possible outcomes.
 * Settle with a single rejection reason as soon as one of its dependencies is rejected.
 * Settle with all fulfillment results as soon as all of its dependencies are fulfilled.
 
+Promise.race() is similar to Promise.all, except the first promise to settle will “win” the race, and its value will be passed along to branches of the race. 
+Rejections will also finish the race, and the race promise will be rejected. This could be useful for scenarios where we want to time out a promise we otherwise have no control over.
+
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
 * [Promises for asynchronous programming](http://exploringjs.com/es6/ch_promises.html)

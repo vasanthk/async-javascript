@@ -234,3 +234,27 @@ Promise.all([
   .then(responses => responses.map(response => response.statusText))
   .then(status => console.log(status.join(', ')));
 // nothing happens
+
+
+/**
+ * Promise.race()
+ * This is a similar method to Promise.all, except the first promise to settle will “win” the race, and its value will be passed along to branches of the race.
+ */
+Promise.race([
+  fetch('/'),
+  fetch('foo')
+])
+  .then(response => console.log(response.statusText));
+// <- 'OK', or maybe 'Not Found'.
+
+
+// Rejections will also finish the race, and the race promise will be rejected.
+// This could be useful for scenarios where we want to time out a promise we otherwise have no control over.
+var p = Promise.race([
+  fetch('/resource-that-may-take-a-while'),
+  new Promise(function (resolve, reject) {
+    setTimeout(() => reject(new Error('request timeout')), 5000)
+  })
+]);
+p.then(response => console.log(response));
+p.catch(error => console.log(error));
