@@ -164,3 +164,20 @@ var p2 = new Promise(function (resolve, reject) {
 p2.then(result => console.log(result));
 p2.catch(error => console.log(error));
 // <- Error: fail
+
+/**
+ * SETTLING A PROMISE
+ *
+ * In the example below, p is resolved with a value of 100 after two seconds. Then, 100 is printed onto the screen.
+ * Two seconds later, another .then branch is added onto p, but since p has already fulfilled, the new branch gets executed right away.
+ *
+ * A promise can return another promise – this is what enables and powers most of their asynchronous behavior.
+ */
+var p = new Promise(function (resolve, reject) {
+  setTimeout(() => resolve(100), 2000)
+});
+p.then(result => console.log(result));
+// <- 100
+
+setTimeout(() => p.then(result => console.log(result * 20)), 4000);
+// <- 2000

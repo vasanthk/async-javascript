@@ -60,6 +60,11 @@ Promises can be chained “arbitrarily”, that is to say - you can save a refer
 Promises can be created from scratch by using new Promise(resolver). The resolver parameter is a method that will be used to resolve the promise. It takes two arguments, a resolve method and a reject method. These promises are fulfilled and rejected, respectively, on the next tick.
 Usually promises will resolve to some result, like the response from an AJAX call. Similarly, you’ll probably want to state the reason for your rejections – typically using an Error object. 
 
+### Settling a promise
+Promises can exist in three states: pending, fulfilled, and rejected. Pending is the default state. From there, a promise can be “settled” into either fulfillment or rejection. Once a promise is settled, all reactions that are waiting on it are evaluated. Those on the correct branch – .then for fulfillment and .catch for rejections – are executed.
+
+From this point on, the promise is settled. If at a later point in time another reaction is chained onto the settled promise, the appropriate branch for that reaction is executed in the next tick of the program.
+
 
 
 ### Links
