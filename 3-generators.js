@@ -29,3 +29,26 @@ for (let [key, value] of objectEntries(jane)) {
 // Output:
 // first: Jane
 // last: Doe
+
+/**
+ * Blocking on asynchronous function calls
+ */
+// In the following code, I use the control flow library co to asynchronously retrieve two JSON files.
+// Note how, in line (A), execution blocks (waits) until the result of Promise.all() is ready.
+// That means that the code looks synchronous while performing asynchronous operations.
+
+co(function* () {
+  try {
+    let [croftStr, bondStr] = yield Promise.all([ // A
+      getFile('http://localhost:8000/croft.json'),
+      getFile('http://localhost:8000/bond.json')
+    ]);
+    let croftJson = JSON.parse(croftStr);
+    let bondJson = JSON.parse(bondStr);
+
+    console.log(croftJson);
+    console.log(bondJson);
+  } catch (e) {
+    console.log('Failure to read: ' + e);
+  }
+});
