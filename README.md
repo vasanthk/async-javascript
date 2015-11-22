@@ -94,32 +94,40 @@ Two important applications of generators are:
 There are four ways in which you can create generators:
 * Via a generator function declaration:
 
-    ```function* genFunc() { ··· }
-    let genObj = genFunc();```
+    ```javascript
+    function* genFunc() { ··· }
+    let genObj = genFunc();
+    ```
     
 * Via a generator function expression:
 
-    ```const genFunc = function* () { ··· };
-    let genObj = genFunc();```
+    ```javascript
+    const genFunc = function* () { ··· };
+    let genObj = genFunc();
+    ```
     
 * Via a generator method definition in an object literal:
 
-    ```let obj = {
+    ```javascript
+    let obj = {
         * generatorMethod() {
             ···
         }
     };
-    let genObj = obj.generatorMethod();```
+    let genObj = obj.generatorMethod();
+    ```
     
 * Via a generator method definition in a class definition (which can be a class declaration or a class expression [11]):
 
-    ```class MyClass {
+    ```javascript
+    class MyClass {
         * generatorMethod() {
             ···
         }
     }
     let myInst = new MyClass();
-    let genObj = myInst.generatorMethod();```
+    let genObj = myInst.generatorMethod();
+    ```
     
 ### Roles played by generators
 * **Iterators (data producers):** 
