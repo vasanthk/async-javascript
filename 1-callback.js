@@ -1,5 +1,10 @@
 /**
  * Callback
+ *
+ * @Reference:
+ * 	http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/
+ * 	https://www.quora.com/What-is-callback-hell
+ * 	http://stackabuse.com/avoiding-callback-hell-in-node-js/
  */
 
 /**
