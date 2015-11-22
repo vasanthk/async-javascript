@@ -90,3 +90,33 @@ Two important applications of generators are:
 * Implementing iterables
 * Blocking on asynchronous function calls
 
+### Creating Generators
+There are four ways in which you can create generators:
+* Via a generator function declaration:
+
+    ```function* genFunc() { ··· }
+    let genObj = genFunc();```
+    
+* Via a generator function expression:
+
+    ```const genFunc = function* () { ··· };
+    let genObj = genFunc();```
+    
+* Via a generator method definition in an object literal:
+
+    ```let obj = {
+        * generatorMethod() {
+            ···
+        }
+    };
+    let genObj = obj.generatorMethod();```
+    
+* Via a generator method definition in a class definition (which can be a class declaration or a class expression [11]):
+
+    ```class MyClass {
+        * generatorMethod() {
+            ···
+        }
+    }
+    let myInst = new MyClass();
+    let genObj = myInst.generatorMethod();```
