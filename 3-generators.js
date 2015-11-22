@@ -160,3 +160,65 @@ function* genFunc() {
     yield x; // OK
   }
 }
+
+
+
+// 2. Generators as observers (data consumption)
+
+/**
+ * Sending values via next()
+ */
+// If you use a generator as an observer, you send values to it via next() and it receives those values via yield:
+function* dataConsumer() {
+  console.log('Started');
+  console.log(`1. ${yield}`); // (A)
+  console.log(`2. ${yield}`);
+  return 'result';
+}
+
+// Let’s use this generator interactively. First, we create a generator object:
+let genObj = dataConsumer();
+
+// We now call genObj.next(), which starts the generator. Execution continues until the first yield, which is where the generator pauses.
+// The result of next() is the value yielded in line (A) (undefined, because yield doesn’t have an operand).
+genObj.next();
+// OUTPUT:
+// Started
+// { value: undefined, done: false }
+
+// We call next() two more times, in order to send the value 'a' to the first yield and the value 'b' to the second yield:
+genObj.next('a');
+// 1. a
+// { value: undefined, done: false }
+
+genObj.next('b');
+// 2. b
+// { value: 'result', done: true }
+
+// The result of the last next() is the value returned from dataConsumer(). done being true indicates that the generator is finished.
+// Unfortunately, next() is asymmetric, but that can’t be helped: It always sends a value to the currently suspended yield, but returns the operand of the following yield.
+
+
+/**
+ * The first next()
+ *
+ * When using a generator as an observer, it is important to note that the only purpose of the first invocation of next() is to start the observer.
+ * It is only ready for input afterwards, because this first invocation has advanced execution to the first yield.
+ * Therefore, you can’t send input via the first next() – you even get an error if you do
+ */
+function* g() { yield }
+g().next('hello');
+// TypeError: attempt to send 'hello' to newborn generator
+
+
+/**
+ * yield binds loosely
+ */
+yield a + b + c;
+
+// Is treated as
+yield (a + b + c);
+
+// Not as
+(yield a) + b + c;
+
