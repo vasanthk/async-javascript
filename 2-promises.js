@@ -143,3 +143,24 @@ function resolveUnderThreeSeconds (delay) {
 }
 resolveUnderThreeSeconds(2000); // resolves!
 resolveUnderThreeSeconds(7000);// fulfillment took so long, it was rejected.
+
+/**
+ * Besides returning resolution values, you could also resolve with another promise.
+ *
+ * In the following snippet we create a promise p that will be rejected in three seconds.
+ * We also create a promise p2 that will be resolved with p in a second.
+ * Since p is still two seconds out, resolving p2 won’t have an immediate effect.
+ * Two seconds later, when p is rejected, p2 will be rejected as well, with the same rejection reason that was provided to p.
+ *
+ * This behavior is only possible for fulfillment branches using resolve.
+ * If you try to replicate the same behavior with reject you’ll find that the p2 promise is just rejected with the p promise as the rejection reason.
+ */
+var p = new Promise(function (resolve, reject) {
+  setTimeout(() => reject(new Error('fail')), 3000)
+});
+var p2 = new Promise(function (resolve, reject) {
+  setTimeout(() => resolve(p), 1000)
+});
+p2.then(result => console.log(result));
+p2.catch(error => console.log(error));
+// <- Error: fail
