@@ -58,6 +58,7 @@ for (let [key, value] of objectEntries(jane)) {
 // first: Jane
 // last: Doe
 
+
 /**
  * Blocking on asynchronous function calls
  */
@@ -80,3 +81,65 @@ co(function* () {
     console.log('Failure to read: ' + e);
   }
 });
+
+
+/**
+ * Recursion via yield*
+ */
+function* foo() {
+  yield 'a';
+  yield 'b';
+}
+
+function* bar() {
+  yield 'x';
+  yield* foo(); // yield* is used for making recursive generator calls.
+  yield 'y';
+}
+
+// Collect all values yielded by bar() in an array
+let arr = [...bar()];
+// ['x', 'a', 'b', 'y']
+
+
+/**
+ * Iterating over trees
+ */
+// Consider the following data structure for binary trees.
+// It is iterable, because it has a method whose key is Symbol.iterator.
+// That method is a generator method and returns an iterator when called.
+class BinaryTree {
+  constructor(value, left=null, right=null) {
+    this.value = value;
+    this.left = left;
+    this.right = right;
+  }
+
+  /** Prefix iteration */
+  * [Symbol.iterator]() {
+    yield this.value;
+    if (this.left) {
+      yield* this.left;
+    }
+    if (this.right) {
+      yield* this.right;
+    }
+  }
+}
+
+// The following code creates a binary tree and iterates over it via for-of:
+let tree = new BinaryTree('a',
+  new BinaryTree('b',
+    new BinaryTree('c'),
+    new BinaryTree('d')),
+  new BinaryTree('e'));
+
+for (let x of tree) {
+  console.log(x);
+}
+// Output:
+// a
+// b
+// c
+// d
+// e
