@@ -120,3 +120,11 @@ There are four ways in which you can create generators:
     }
     let myInst = new MyClass();
     let genObj = myInst.generatorMethod();```
+    
+### Roles played by generators
+* **Iterators (data producers):** 
+  * Each yield can return a value via next(), which means that generators can produce sequences of values via loops and recursion. Due to generator objects implementing the interface Iterable, these sequences can be processed by any ES6 construct that supports iterables. Two examples are: for-of loops and the spread operator (...).
+* **Observers (data consumers):** 
+  * yield can also receive a value from next() (via a parameter). That means that generators become data consumers that pause until a new value is pushed into them via next().
+* **Coroutines (data producers and consumers):** 
+  * Given that generators are pausable and can be both data producers and data consumers, not much work is needed to turn them into coroutines (cooperatively multitasked tasks).    
