@@ -6,6 +6,34 @@
  */
 
 /**
+ * What are generators?
+ */
+
+//  Two things distinguish genFunc from a normal function declaration:
+//    It starts with the “keyword” function*.
+//    It is paused in the middle via yield.
+function* genFunc() {
+  console.log('First');
+  yield;                  // (A)
+  console.log('Second');  // (B)
+}
+//  Calling genFunc does not execute it. Instead, it returns a so-called generator object that lets us control genFunc’s execution:
+let genObj = genFunc();
+
+// genFunc() is initially suspended at the beginning of its body. The method genObj.next() continues the execution of genFunc, until the next yield:
+genObj.next();
+// OUTPUT:
+// First
+// { value: undefined, done: false }
+
+// genFunc is now paused in line (A). If we call next() again, execution resumes and line (B) is executed
+genObj.next();
+// OUTPUT:
+// Second
+// { value: undefined, done: true }
+
+
+/**
  * Implementing iterables via generators
  */
 // The asterisk after `function` means that`objectEntries` is a generator
