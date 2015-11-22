@@ -65,7 +65,11 @@ Promises can exist in three states: pending, fulfilled, and rejected. Pending is
 
 From this point on, the promise is settled. If at a later point in time another reaction is chained onto the settled promise, the appropriate branch for that reaction is executed in the next tick of the program. Interestingly, if a .catch branch goes smoothly without errors, then it will be fulfilled with the returned value.
 
+Promises already make the “run this after this other thing in series” use case very easy, using .then as we saw in several examples earlier. For the “run these things concurrently” use case, we can use Promise.all()
 
+Promise.all has two possible outcomes.
+* Settle with a single rejection reason as soon as one of its dependencies is rejected.
+* Settle with all fulfillment results as soon as all of its dependencies are fulfilled.
 
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 

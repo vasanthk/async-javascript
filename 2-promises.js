@@ -211,3 +211,26 @@ Promise.reject(new Error('Database ds.214.53.4.12 connection timeout!'))
   .catch(error => console.info(error));
 // <- Error: Internal Server Error
 
+
+/**
+ * Promise.all()
+ *
+ * Promises already make the “run this after this other thing in series” use case very easy, using .then as we saw in several examples earlier. For the “run these things concurrently” use case, we can use Promise.all
+ */
+Promise.all([
+  fetch('/'),
+  fetch('foo')
+])
+  .then(responses => responses.map(response => response.statusText))
+  .then(status => console.log(status.join(', ')));
+// <- 'OK, Not Found'
+
+// Note that even if a single dependency is rejected, the Promise.all method will be rejected entirely as well.
+Promise.all([
+  Promise.reject(),
+  fetch('/'),
+  fetch('foo')
+])
+  .then(responses => responses.map(response => response.statusText))
+  .then(status => console.log(status.join(', ')));
+// nothing happens
