@@ -77,3 +77,5 @@ Rejections will also finish the race, and the race promise will be rejected. Thi
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
 * [Promises for asynchronous programming](http://exploringjs.com/es6/ch_promises.html)
+* [ECMAScript 6 promises: the API](http://www.2ality.com/2014/10/es6-promises-api.html)
+* [JavaScript Promises ... In Wicked Detail](http://www.mattgreer.org/articles/promises-in-wicked-detail/)
