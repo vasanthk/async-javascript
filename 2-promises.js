@@ -181,3 +181,33 @@ p.then(result => console.log(result));
 
 setTimeout(() => p.then(result => console.log(result * 20)), 4000);
 // <- 2000
+
+/**
+ * Paying a Promise with another Promise
+ *
+ * We use a promise and .then another promise that will only be settled once the returned promise also settles.
+ */
+var p = Promise.resolve()
+  .then(data => new Promise(function (resolve, reject) {
+    setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+  }));
+
+p.then(data => console.log('okay!'));
+p.catch(data => console.log('boo!'));
+
+/**
+ * Transforming values in Promises
+ */
+Promise.resolve([1, 2, 3])
+  .then(values => values.map(value => value * 2))
+  .then(values => console.log(values));
+// <- [2, 4, 6]
+
+// NOTE: You can do the same thing in rejection branches.
+// Interestingly, if a .catch branch goes smoothly without errors, then it will be fulfilled with the returned value.
+// The following piece of code takes an internal error and masks it behind a generic “Internal Server Error” message as to not leak off potentially dangerous information to its clients
+Promise.reject(new Error('Database ds.214.53.4.12 connection timeout!'))
+  .catch(error => { throw new Error('Internal Server Error') })
+  .catch(error => console.info(error));
+// <- Error: Internal Server Error
+

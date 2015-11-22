@@ -63,9 +63,10 @@ Usually promises will resolve to some result, like the response from an AJAX cal
 ### Settling a promise
 Promises can exist in three states: pending, fulfilled, and rejected. Pending is the default state. From there, a promise can be “settled” into either fulfillment or rejection. Once a promise is settled, all reactions that are waiting on it are evaluated. Those on the correct branch – .then for fulfillment and .catch for rejections – are executed.
 
-From this point on, the promise is settled. If at a later point in time another reaction is chained onto the settled promise, the appropriate branch for that reaction is executed in the next tick of the program.
+From this point on, the promise is settled. If at a later point in time another reaction is chained onto the settled promise, the appropriate branch for that reaction is executed in the next tick of the program. Interestingly, if a .catch branch goes smoothly without errors, then it will be fulfilled with the returned value.
 
 
 
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
+* [Promises for asynchronous programming](http://exploringjs.com/es6/ch_promises.html)
