@@ -1,5 +1,7 @@
 /**
- * Promises
+ * ES6 Promises
+ *
+ * @Reference: https://ponyfoo.com/articles/es6-promises-in-depth
  */
 
 /**
@@ -114,3 +116,30 @@ var p1 = fetch('foo');
 var p2 = p1.then(res => res.a.prop.that.does.not.exist);
 var p3 = p2.catch(err => {});
 var p4 = p3.catch(err => console.error(err.message));
+
+/**
+ * CREATING NEW PROMISES
+ */
+new Promise(resolve => resolve()); // promise is fulfilled
+new Promise((resolve, reject) => reject()); // promise is rejected
+
+new Promise(resolve => resolve({ foo: 'bar' }))
+  .then(result => console.log(result));
+// <- { foo: 'bar' }
+
+new Promise((resolve, reject) =>
+  reject(new Error('failed to deliver on my promise to you')))
+  .catch(reason => console.log(reason));
+// <- Error: failed to deliver on my promise to you
+
+/**
+ * It’s important to note that only the first call made to either resolve/reject will have an impact – once a promise is settled, it’s result can’t change
+ */
+function resolveUnderThreeSeconds (delay) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(resolve, delay);
+    setTimeout(reject, 3000);
+  })
+}
+resolveUnderThreeSeconds(2000); // resolves!
+resolveUnderThreeSeconds(7000);// fulfillment took so long, it was rejected.

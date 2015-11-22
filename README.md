@@ -57,5 +57,10 @@ Promises are usually vaguely defined as “a proxy for a value that will eventua
 
 Promises can be chained “arbitrarily”, that is to say - you can save a reference to any point in the promise chain and then tack more promises on top of it. This is one of the fundamental points to understanding promises.
 
+Promises can be created from scratch by using new Promise(resolver). The resolver parameter is a method that will be used to resolve the promise. It takes two arguments, a resolve method and a reject method. These promises are fulfilled and rejected, respectively, on the next tick.
+Usually promises will resolve to some result, like the response from an AJAX call. Similarly, you’ll probably want to state the reason for your rejections – typically using an Error object. 
+
+
+
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
