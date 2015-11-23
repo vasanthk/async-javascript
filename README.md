@@ -28,8 +28,6 @@ friends.forEach(function (eachName, index) {
 });
 ```
 
-[![Code Snippets](https://upload.wikimedia.org/wikipedia/commons/6/63/Code_Icon.PNG)](https://github.com/vasanthk/async-javascript/blob/master/1-callback.js)
-
 ### How Callback Functions Work?
 We can pass functions around like variables and return them in functions and use them in other functions. When we pass a callback function as an argument to another function, we are only passing the function definition. We are not executing the function in the parameter. In other words, we aren’t passing the function with the trailing pair of executing parenthesis () like we do when we are executing a function.
 
@@ -83,6 +81,8 @@ Here are two solutions to this problem:
 * In setTimeout and setInterval methods
 * For Generalization: code conciseness
 
+> [More Code](https://github.com/vasanthk/async-javascript/blob/master/1-callback.js)
+
 ### Links
 * [Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
 * [Callback Hell](http://callbackhell.com/)
@@ -120,6 +120,8 @@ Promise.all has two possible outcomes.
 
 Promise.race() is similar to Promise.all, except the first promise to settle will “win” the race, and its value will be passed along to branches of the race. 
 Rejections will also finish the race, and the race promise will be rejected. This could be useful for scenarios where we want to time out a promise we otherwise have no control over.
+
+> [More Code](https://github.com/vasanthk/async-javascript/blob/master/2-promises.js)
 
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
@@ -189,6 +191,8 @@ The fact that generators-as-observers pause while they wait for input makes them
 * **First chain member:** A normal function that has a parameter target, which is the generator object of the next element in the chain of generators. The function makes an asynchronous request and pushes the results to the target via target.next().
 * **Intermediate chain members:** Generators that have a parameter target. They receive data via yield and send data via target.next().
 * **Last chain member:** A generator that has no parameter target and only receives data.
+
+> [More Code](https://github.com/vasanthk/async-javascript/blob/master/3-generators.js)
    
 ### Links
 * [ES6 Generators in depth](http://www.2ality.com/2015/03/es6-generators.html)
@@ -399,6 +403,8 @@ console.log('hello');
 ```
 You can see that async functions still utilize built-in promises, but they do so under the hood. 
 This gives us the ability to think synchronously while within an async function, although others can invoke our async functions using the normal promises API or using async functions of their own.
+
+> [More Code](https://github.com/vasanthk/async-javascript/blob/master/4-async-await.js)
 
 ### Links
 * [Simplifying Asynchronous Coding with ES7 Async Functions](http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/)
