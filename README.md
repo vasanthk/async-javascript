@@ -166,7 +166,7 @@ There are four ways in which you can create generators:
     let genObj = obj.generatorMethod();
     ```
     
-* Via a generator method definition in a class definition (which can be a class declaration or a class expression [11]):
+* Via a generator method definition in a class definition (which can be a class declaration or a class expression):
 
     ```javascript
     class MyClass {
