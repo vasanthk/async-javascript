@@ -44,3 +44,32 @@ async function doAsyncOp () {
   return await asynchronousOperation(val);
   // You don’t even need the await keyword on that return statement because either way it will return a promise resolving to the final value.
 }
+
+/**
+ * Parallel Operations
+ */
+
+// Using Promise.all()
+function doAsyncOp () {
+  return Promise.all([asynchronousOperation(), asynchronousOperation()])
+    .then(function(vals) {
+      vals.forEach(console.log);
+      return vals;
+    });
+}
+
+// Using Async functions -- You still need to use Promise directly.
+function doAsyncOp() {
+  var vals = await Promise.all([asynchronousOperation(), asynchronousOperation()]);
+  vals.forEach(console.log.bind(console));
+  return vals;
+}
+
+// There is a proposal in ES7 to make the above function simpler (Dated Nov 22, 2015)
+// The idea is that await* EXPRESSION would be converted to await Promise.all(EXPRESSION) behind the scenes, which allows us to be more terse and avoid using the Promise API directly.
+// In this case the previous example would look like this:
+async function doAsyncOp () {
+  var vals = await* [asynchronousOperation(), asynchronousOperation()];
+  vals.forEach(console.log.bind(console));
+  return vals;
+}

@@ -201,6 +201,28 @@ async function doAsyncOp () {
 ```
 You don’t even need the await keyword on that return statement because either way it will return a promise resolving to the final value.
 
+###Parallel Operations
+One of the other great features of promises is the ability to run multiple asynchronous operations at once and continue on your way once all of them have completed. Promise.all is the way to do this according to the new ES6 spec.
+
+```javascript
+function doAsyncOp () {
+    return Promise.all([asynchronousOperation(), asynchronousOperation()])
+        .then(function(vals) {
+            vals.forEach(console.log);
+            return vals;
+        });
+}
+```
+
+This is also possible with async functions, though you may still need to use Promise directly:
+```javascript
+async function doAsyncOp () {
+    var vals = await Promise.all([asynchronousOperation(), asynchronousOperation()]);
+    vals.forEach(console.log.bind(console));
+    return vals;
+}
+```
+
 ### Links
 * [Simplifying Asynchronous Coding with ES7 Async Functions](http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/)
 * [Jafar Husain: Async Programming in ES7 | JSConf US 2015](https://www.youtube.com/watch?v=lil4YCCXRYc)
