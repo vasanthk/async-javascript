@@ -7,6 +7,7 @@
 
 /**
  * What are generators?
+ * Generators are functions which can be exited and later re-entered. Their context (variable bindings) will be saved across re-entrances.
  */
 
 //  Two things distinguish genFunc from a normal function declaration:
@@ -83,7 +84,6 @@ co(function* () {
 });
 
 
-
 // 1. Generators as iterators (data production)
 /**
  * Recursion via yield*
@@ -111,7 +111,7 @@ let arr = [...bar()];
 // It is iterable, because it has a method whose key is Symbol.iterator.
 // That method is a generator method and returns an iterator when called.
 class BinaryTree {
-  constructor(value, left=null, right=null) {
+  constructor(value, left = null, right = null) {
     this.value = value;
     this.left = left;
     this.right = right;
@@ -162,7 +162,6 @@ function* genFunc() {
 }
 
 
-
 // 2. Generators as observers (data consumption)
 
 /**
@@ -206,7 +205,9 @@ genObj.next('b');
  * It is only ready for input afterwards, because this first invocation has advanced execution to the first yield.
  * Therefore, you can’t send input via the first next() – you even get an error if you do
  */
-function* g() { yield }
+function* g() {
+  yield
+}
 g().next('hello');
 // TypeError: attempt to send 'hello' to newborn generator
 
@@ -283,10 +284,10 @@ genObj2.next();
 
 
 // Returning from a newborn generator is allowed!
-function* genFunc() {}
+function* genFunc() {
+}
 genFunc().return('yes');
 // { value: 'yes', done: true }
-
 
 
 /**
@@ -320,6 +321,7 @@ genObj1.throw(new Error('Problem!'));
 
 
 // Throwing an exception in a newborn generator (that hasn’t started yet) is allowed:
-function* genFunc() {}
+function* genFunc() {
+}
 genFunc().throw(new Error('Problem!'));
 // Error: Problem!

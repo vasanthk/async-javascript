@@ -141,4 +141,10 @@ There are four ways in which you can create generators:
 The fact that generators-as-observers pause while they wait for input makes them perfect for on-demand processing of data that is received asynchronously. The pattern for setting up a chain of generators for processing is as follows:
 * **First chain member:** A normal function that has a parameter target, which is the generator object of the next element in the chain of generators. The function makes an asynchronous request and pushes the results to the target via target.next().
 * **Intermediate chain members:** Generators that have a parameter target. They receive data via yield and send data via target.next().
-* **Last chain member:** A generator that has no parameter target and only receives data.   
+* **Last chain member:** A generator that has no parameter target and only receives data.
+   
+### Links
+* [ES6 Generators in depth](http://www.2ality.com/2015/03/es6-generators.html)
+* [The Basics Of ES6 Generators](https://davidwalsh.name/es6-generators)
+* [No promises: asynchronous JavaScript with only generators](http://www.2ality.com/2015/03/no-promises.html)
+* [ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
