@@ -8,6 +8,20 @@ Because functions are first-class objects, we can pass a function as an argument
 
 A callback function, also known as a higher-order function, is a function that is passed to another function (let’s call this other function “otherFunction”) as a parameter, and the callback function is called (or executed) inside the otherFunction.
 
+```javascript
+//Note that the item in the click method's parameter is a function, not a variable.​ The item is a callback function
+$("#btn_1").click(function () {
+  alert("Btn 1 Clicked");
+});
+
+// forEach()
+var friends = ["Mike", "Stacy", "Andy", "Rick"];
+friends.forEach(function (eachName, index) {
+  // Inside callback function.
+  console.log(index + 1 + ". " + eachName); // 1. Mike, 2. Stacy, 3. Andy, 4. Rick​
+});
+```
+
 ### How Callback Functions Work?
 We can pass functions around like variables and return them in functions and use them in other functions. When we pass a callback function as an argument to another function, we are only passing the function definition. We are not executing the function in the parameter. In other words, we aren’t passing the function with the trailing pair of executing parenthesis () like we do when we are executing a function.
 
@@ -29,6 +43,20 @@ When we pass a callback function as an argument to another function, the callbac
   
 ### “Callback Hell” Problem And Solution
 In asynchronous code execution, which is simply execution of code in any order, sometimes it is common to have numerous levels of callback functions to the extent that it is messy and hard to comprehend.
+
+```javascript
+getData(function (a) {
+  getMoreData(a, function (b) {
+    getMoreData(b, function (c) {
+      getMoreData(c, function (d) {
+        getMoreData(d, function (e) {
+          console.log('Callback Hell');
+        });
+      });
+    });
+  });
+});
+```
  
 Here are two solutions to this problem:
  * Name your functions and declare them and pass just the name of the function as the callback, instead of defining an anonymous function in the parameter of the main function. It makes code easier to read and also helps to get better stack traces when exeptions happen.
@@ -254,6 +282,104 @@ async function doAsyncOp () {
 }
 ```
 If you don’t catch the error here, it’ll bubble up until it is caught in the caller functions, or it will just not be caught and you’ll kill execution with a run-time error.
+
+### Broken Promises
+To reject an ES6 promises you can use reject inside the Promise constructor, or you can throw an error—either inside the Promise constructor or within a then or catch callback. If an error is thrown outside of that scope, it won’t be contained in the promise.
+
+Here are some examples of ways to reject ES6 promises:
+```javascript
+function doAsyncOp () {
+    return new Promise( function(resolve, reject) {
+        if ( somethingIsBad ) {
+            reject(new Error('something is bad'));
+            // OR
+            // reject('something is bad');
+            // OR
+            // throw new Error('something is bad');
+        }
+        resolve('nothing is bad');
+    });
+}
+```
+Generally it is best to use the new Error whenever you can because it will contain additional information about the error, such as the line number where it was thrown, and a potentially useful stack trace.
+
+With async functions promises are rejected by throwing errors. The scope issue doesn’t arise—you can throw an error anywhere within an async function and it will be caught by the promise.
+
+```javascript
+async function doAsyncOp () {
+    // the next line is fine
+    throw new Error('something is bad');
+
+    if ( somethingIsBad ) {
+        // this one is good too
+        throw new Error('something is bad');
+    }
+    return 'nothing is bad';
+}
+
+// assume `doAsyncOp` does not have the killing error
+async function x () {
+    var val = await doAsyncOp;
+
+    // this one will work just fine
+    throw new Error("I just think an error should be here");
+
+    return val;
+}
+```
+Of course, we’ll never get to that second error or to the return inside the doAsyncOp function because the error will be thrown and will stop execution within that function.
+
+### Gotchas
+* One gotcha to be aware of is using nested functions. For example, if you have another function within your async function (generally as a callback to something), you may think that you can just use await from within that function. 
+You can’t. You can only use await directly within an async function. This does not work:
+
+```javascript
+async function getAllFiles (files) {
+    return await* files.map(function(filename) {
+        var file = await getFileAsync(filename);
+        return parse(file);
+    });
+}
+```
+The await on line 3 is invalid because it is used inside a normal function. Instead, the callback function must have the async keyword attached to it.
+```javascript
+async function getAllFiles (fileNames) {
+    return await* fileNames.map(async function(fileName) {
+        var file = await getFileAsync(fileName);
+        return parse(file);
+    });
+}
+```
+
+* The next gotcha relates to people thinking that async functions are synchronous functions. 
+Remember, the code inside the async function will run as if it is synchronous, but it will still immediately return a promise and allow other code to execute outside of it while it works to fulfillment. 
+For example:
+
+```javascript
+async function doAsyncOp () {
+    try {
+      var val = await asynchronousOperation();
+      val = await asynchronousOperation(val);
+      return await asynchronousOperation(val);
+    } catch (err) {
+      console.err(err);
+    }
+}
+
+var a = doAsyncOp();
+console.log(a);
+a.then(function() {
+    console.log('`a` finished');
+});
+console.log('hello');
+
+/* -- will output -- */
+// Promise Object
+// hello
+// `a` finished
+```
+You can see that async functions still utilize built-in promises, but they do so under the hood. 
+This gives us the ability to think synchronously while within an async function, although others can invoke our async functions using the normal promises API or using async functions of their own.
 
 ### Links
 * [Simplifying Asynchronous Coding with ES7 Async Functions](http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/)
