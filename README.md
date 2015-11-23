@@ -7,7 +7,7 @@
 - [Generators (ES6)](#generators-es6)
 - [Async Functions (ES7)](#async-functions-es7)
 
-## Callbacks
+## [Callbacks](https://github.com/vasanthk/async-javascript/blob/master/1-callback.js)
 In JavaScript, functions are first-class objects; that is, functions are of the type Object and they can be used in a first-class manner like any other object (String, Array, Number, etc.) since they are in fact objects themselves. They can be “stored in variables, passed as arguments to functions, created within functions, and returned from functions”.
 
 Because functions are first-class objects, we can pass a function as an argument in another function and later execute that passed-in function or even return it to be executed later. This is the essence of using callback functions in JavaScript. 
@@ -88,7 +88,7 @@ Here are two solutions to this problem:
 * [Callback Hell](http://callbackhell.com/)
 * [Avoiding Callback hell in Node.js](http://stackabuse.com/avoiding-callback-hell-in-node-js/)
 
-## Promises
+## [Promises](https://github.com/vasanthk/async-javascript/blob/master/2-promises.js)
 Promises are usually vaguely defined as “a proxy for a value that will eventually become available”. They can be used for both synchronous and asynchronous code flows, although they make asynchronous flows easier to reason about.
 
 Promises can be chained “arbitrarily”, that is to say - you can save a reference to any point in the promise chain and then tack more promises on top of it. This is one of the fundamental points to understanding promises.
@@ -132,7 +132,7 @@ Rejections will also finish the race, and the race promise will be rejected. Thi
 * [Promise Patterns & Anti-Patterns](http://www.datchley.name/promise-patterns-anti-patterns/)
 * [What’s the deal with jQuery Deferred objects and Promises?](http://www.vasanthk.com/jquery-promises-and-deferred-objects/)
 
-## Generators (ES6)
+## [Generators (ES6)](https://github.com/vasanthk/async-javascript/blob/master/3-generators.js)
 Generators, a new feature of ES6, are functions that can be paused and resumed. This helps with many applications: iterators, asynchronous programming, etc.
 
 Two important applications of generators are:
@@ -200,7 +200,7 @@ The fact that generators-as-observers pause while they wait for input makes them
 * [No promises: asynchronous JavaScript with only generators](http://www.2ality.com/2015/03/no-promises.html)
 * [ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
 
-## Async Functions (ES7)
+## [Async Functions (ES7)](https://github.com/vasanthk/async-javascript/blob/master/4-async-await.js)
 Async functions take the idea of using generators for asynchronous programming and give them their own simple and semantic syntax.
 
 ### Converting Promises to Async Functions
