@@ -1,5 +1,11 @@
-# Asynchronous JavaScript
-Evolution of Async handling in JavaScript!
+# Evolution of Async handling in JavaScript!
+
+**Table of Contents**
+
+- [Callbacks](#callbacks)
+- [Promises ES6](#promises)
+- [Generators ES6](#generators-es6)
+- [Async Functions ES7](#async-functions-es7)
 
 ## Callbacks
 In JavaScript, functions are first-class objects; that is, functions are of the type Object and they can be used in a first-class manner like any other object (String, Array, Number, etc.) since they are in fact objects themselves. They can be “stored in variables, passed as arguments to functions, created within functions, and returned from functions”.
@@ -22,6 +28,8 @@ friends.forEach(function (eachName, index) {
 });
 ```
 
+[![Code Snippets](https://upload.wikimedia.org/wikipedia/commons/6/63/Code_Icon.PNG)](https://github.com/vasanthk/async-javascript/blob/master/1-callback.js)
+
 ### How Callback Functions Work?
 We can pass functions around like variables and return them in functions and use them in other functions. When we pass a callback function as an argument to another function, we are only passing the function definition. We are not executing the function in the parameter. In other words, we aren’t passing the function with the trailing pair of executing parenthesis () like we do when we are executing a function.
 
@@ -41,7 +49,7 @@ When we pass a callback function as an argument to another function, the callbac
 * Multiple Callback Functions Allowed
   * We can pass more than one callback functions into the parameter of a function, just like we can pass more than one variable.
   
-### “Callback Hell” Problem And Solution
+### “Callback Hell”
 In asynchronous code execution, which is simply execution of code in any order, sometimes it is common to have numerous levels of callback functions to the extent that it is messy and hard to comprehend.
 
 ```javascript
