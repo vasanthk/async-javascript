@@ -1,11 +1,11 @@
-# Evolution of Async handling in JavaScript!
+# Evolution of Asynchronous Programming in JavaScript
 
 **Table of Contents**
 
 - [Callbacks](#callbacks)
-- [Promises ES6](#promises)
-- [Generators ES6](#generators-es6)
-- [Async Functions ES7](#async-functions-es7)
+- [Promises (ES6)](#promises)
+- [Generators (ES6)](#generators-es6)
+- [Async Functions (ES7)](#async-functions-es7)
 
 ## Callbacks
 In JavaScript, functions are first-class objects; that is, functions are of the type Object and they can be used in a first-class manner like any other object (String, Array, Number, etc.) since they are in fact objects themselves. They can be “stored in variables, passed as arguments to functions, created within functions, and returned from functions”.
