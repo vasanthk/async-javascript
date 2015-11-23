@@ -223,6 +223,38 @@ async function doAsyncOp () {
 }
 ```
 
+### Handling Rejection
+Promises have the ability to be resolved or rejected. Rejected promises can be handled with the second function passed to then or with the catch method. 
+Since we’re not using any Promise API methods, how would we handle a rejection? We do it with a try and catch. 
+When using async functions, rejections are passed around as errors and this allows them to be handled with built-in JavaScript error handling code.
+
+Using promises
+```javascript
+function doAsyncOp () {
+    return asynchronousOperation().then(function(val) {
+        return asynchronousOperation(val);
+    }).then(function(val) {
+        return asynchronousOperation(val);
+    }).catch(function(err) {
+        console.error(err);
+    });
+}
+```
+
+Here’s what it would look like with async functions.
+```javascript
+async function doAsyncOp () {
+    try {
+      var val = await asynchronousOperation();
+      val = await asynchronousOperation(val);
+      return await asynchronousOperation(val);
+    } catch (err) {
+      console.err(err);
+    }
+}
+```
+If you don’t catch the error here, it’ll bubble up until it is caught in the caller functions, or it will just not be caught and you’ll kill execution with a run-time error.
+
 ### Links
 * [Simplifying Asynchronous Coding with ES7 Async Functions](http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/)
 * [Jafar Husain: Async Programming in ES7 | JSConf US 2015](https://www.youtube.com/watch?v=lil4YCCXRYc)

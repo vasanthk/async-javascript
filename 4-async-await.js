@@ -48,7 +48,6 @@ async function doAsyncOp () {
 /**
  * Parallel Operations
  */
-
 // Using Promise.all()
 function doAsyncOp () {
   return Promise.all([asynchronousOperation(), asynchronousOperation()])
@@ -73,3 +72,29 @@ async function doAsyncOp () {
   vals.forEach(console.log.bind(console));
   return vals;
 }
+
+/**
+ * Handling Rejections
+ */
+// Using promises
+function doAsyncOp () {
+  return asynchronousOperation().then(function(val) {
+    return asynchronousOperation(val);
+  }).then(function(val) {
+    return asynchronousOperation(val);
+  }).catch(function(err) {
+    console.error(err);
+  });
+}
+
+// Using async functions
+async function doAsyncOp () {
+  try {
+    var val = await asynchronousOperation();
+    val = await asynchronousOperation(val);
+    return await asynchronousOperation(val);
+  } catch (err) {
+    console.err(err);
+  }
+}
+
