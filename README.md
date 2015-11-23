@@ -148,3 +148,60 @@ The fact that generators-as-observers pause while they wait for input makes them
 * [The Basics Of ES6 Generators](https://davidwalsh.name/es6-generators)
 * [No promises: asynchronous JavaScript with only generators](http://www.2ality.com/2015/03/no-promises.html)
 * [ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
+
+## Async Functions (ES7)
+Async functions take the idea of using generators for asynchronous programming and give them their own simple and semantic syntax.
+
+### Converting Promises to Async Functions
+Here is an example of using async functions:
+
+```javascript
+async function doAsyncOp () {
+    var val = await asynchronousOperation();
+    console.log(val);
+    return val;
+}
+```
+Here's its implementation using Promises
+```javascript
+function doAsyncOp () {
+    return asynchronousOperation().then(function(val) {
+        console.log(val);
+        return val;
+    });
+}
+```
+This has the same number of lines, but there is plenty of extra code due to then and the callback function passed to it. The other nuisance is the duplication of the return keyword, it makes it difficult to figure out exactly what is being returned from a function that uses promises.
+Also, Whenever you return a value from and async function, you are actually implicitly returning a promise that resolves to that value. If you don’t return anything at all, you are implicitly returning a promise that resolves to undefined.
+
+### Chaining Operations
+One of the aspects of promises that hooks many people is the ability to chain multiple asynchronous operations without running into nested callbacks. This is one of the areas in which async functions excel even more than promises.
+
+Using promises:
+```javascript
+function doAsyncOp () {
+    return asynchronousOperation().then(function(val) {
+        return asynchronousOperation(val);
+    }).then(function(val) {
+        return asynchronousOperation(val);
+    }).then(function(val) {
+        return asynchronousOperation(val);
+    });
+}
+```
+
+Using Async functions, we can just act like asynchronousOperation is synchronous.
+```javascript
+async function doAsyncOp () {
+    var val = await asynchronousOperation();
+    val = await asynchronousOperation(val);
+    val = await asynchronousOperation(val);
+    return await asynchronousOperation(val);
+}
+```
+You don’t even need the await keyword on that return statement because either way it will return a promise resolving to the final value.
+
+### Links
+* [Simplifying Asynchronous Coding with ES7 Async Functions](http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/)
+* [Jafar Husain: Async Programming in ES7 | JSConf US 2015](https://www.youtube.com/watch?v=lil4YCCXRYc)
+* [Taming the asynchronous beast with ES7](http://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html)
