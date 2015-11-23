@@ -1,4 +1,4 @@
-# Evolution of Asynchronous Programming in JavaScript
+# Evolution of Asynchronous JavaScript
 
 **Table of Contents**
 
