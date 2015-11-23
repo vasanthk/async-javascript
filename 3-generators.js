@@ -3,6 +3,9 @@
  *
  * @Reference:
  * http://www.2ality.com/2015/03/es6-generators.html
+ * https://davidwalsh.name/async-generators
+ * https://www.youtube.com/watch?v=QO07THdLWQo
+ * https://www.youtube.com/watch?v=3UKsXCMK6Iw
  */
 
 /**
