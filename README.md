@@ -67,6 +67,34 @@ getData(function (a) {
 Here are two solutions to this problem:
  * Name your functions and declare them and pass just the name of the function as the callback, instead of defining an anonymous function in the parameter of the main function. It makes code easier to read and also helps to get better stack traces when exeptions happen.
  * Modularity: Separate your code into modules, so you can export a section of code that does a particular job. Then you can import that module into your larger application.
+ 
+## Callback Hell leads to **Inversion of Control**
+
+```
+// A
+ajax( "..", function(..){
+    // C
+} );
+// B
+```
+
+// A and // B happen now, under the direct control of the main JS program. But // C gets deferred to happen later, and under the control of another party -- in this case, the ajax(..) function. 
+In a basic sense, that sort of hand-off of control doesn't regularly cause lots of problems for programs.
+
+A real world example would be
+
+```
+trackCheckoutAjax(purchaseInfo, function() {
+  chargeCreditCard(purchaseInfo);
+  showThankYouPage(); 
+}
+```
+
+But don't be fooled by its infrequency that this control switch isn't a big deal. In fact, it's one of the worst (and yet most subtle) problems about callback-driven design. 
+It revolves around the idea that sometimes ajax(..) (i.e., the "party" you hand your callback continuation to) is not a function that you wrote, or that you directly control. Many times it's a utility provided by some third party.
+We call this "inversion of control," when you take part of your program and give over control of its execution to another third party. There's an unspoken "contract" that exists between your code and the third-party utility -- a set of things you expect to be maintained.
+In the case of `trackCheckoutAjax`, the 3rd party trackCheckoutAjax could potentially call the passed callback multiple times -- since we passed over the callback and really have no control over it being called.
+   
      
 ### Callback functions - Benefits
 * Do not repeat code (DRY—Do Not Repeat Yourself)
@@ -88,6 +116,7 @@ Here are two solutions to this problem:
 * [Callback Hell](http://callbackhell.com/)
 * [Avoiding Callback hell in Node.js](http://stackabuse.com/avoiding-callback-hell-in-node-js/)
 * [Syncing Async by Kyle Simpson](https://www.youtube.com/watch?v=-wYw0bZZ38Y)
+* [Callbacks - YDKJS](https://github.com/getify/You-Dont-Know-JS/blob/master/async%20&%20performance/ch2.md) 
 
 ## [Promises](2-promises.js)
 Promises are usually vaguely defined as “a proxy for a value that will eventually become available”. They can be used for both synchronous and asynchronous code flows, although they make asynchronous flows easier to reason about.
