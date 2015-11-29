@@ -7,7 +7,7 @@
 - [Generators (ES6)](#generators-es6)
 - [Async Functions (ES7)](#async-functions-es7)
 
-## [Callbacks](https://github.com/vasanthk/async-javascript/blob/master/1-callback.js)
+## [Callbacks](1-callback.js)
 In JavaScript, functions are first-class objects; that is, functions are of the type Object and they can be used in a first-class manner like any other object (String, Array, Number, etc.) since they are in fact objects themselves. They can be “stored in variables, passed as arguments to functions, created within functions, and returned from functions”.
 
 Because functions are first-class objects, we can pass a function as an argument in another function and later execute that passed-in function or even return it to be executed later. This is the essence of using callback functions in JavaScript. 
@@ -81,7 +81,7 @@ Here are two solutions to this problem:
 * In setTimeout and setInterval methods
 * For Generalization: code conciseness
 
-> [More Code](https://github.com/vasanthk/async-javascript/blob/master/1-callback.js)
+> [More Code](1-callback.js)
 
 ### Links
 * [Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
@@ -89,7 +89,7 @@ Here are two solutions to this problem:
 * [Avoiding Callback hell in Node.js](http://stackabuse.com/avoiding-callback-hell-in-node-js/)
 * [Syncing Async by Kyle Simpson](https://www.youtube.com/watch?v=-wYw0bZZ38Y)
 
-## [Promises](https://github.com/vasanthk/async-javascript/blob/master/2-promises.js)
+## [Promises](2-promises.js)
 Promises are usually vaguely defined as “a proxy for a value that will eventually become available”. They can be used for both synchronous and asynchronous code flows, although they make asynchronous flows easier to reason about.
 
 Promises can be chained “arbitrarily”, that is to say - you can save a reference to any point in the promise chain and then tack more promises on top of it. This is one of the fundamental points to understanding promises.
@@ -122,7 +122,7 @@ Promise.all has two possible outcomes.
 Promise.race() is similar to Promise.all, except the first promise to settle will “win” the race, and its value will be passed along to branches of the race. 
 Rejections will also finish the race, and the race promise will be rejected. This could be useful for scenarios where we want to time out a promise we otherwise have no control over.
 
-> [More Code](https://github.com/vasanthk/async-javascript/blob/master/2-promises.js)
+> [More Code](2-promises.js)
 
 ### Links
 * [ES6 Promises in Depth](https://ponyfoo.com/articles/es6-promises-in-depth) 
@@ -133,7 +133,7 @@ Rejections will also finish the race, and the race promise will be rejected. Thi
 * [Promise Patterns & Anti-Patterns](http://www.datchley.name/promise-patterns-anti-patterns/)
 * [What’s the deal with jQuery Deferred objects and Promises?](http://www.vasanthk.com/jquery-promises-and-deferred-objects/)
 
-## [Generators (ES6)](https://github.com/vasanthk/async-javascript/blob/master/3-generators.js)
+## [Generators (ES6)](3-generators.js)
 Generators, a new feature of ES6, are functions that can be paused and resumed. This helps with many applications: iterators, asynchronous programming, etc.
 
 Two important applications of generators are:
@@ -193,7 +193,7 @@ The fact that generators-as-observers pause while they wait for input makes them
 * **Intermediate chain members:** Generators that have a parameter target. They receive data via yield and send data via target.next().
 * **Last chain member:** A generator that has no parameter target and only receives data.
 
-> [More Code](https://github.com/vasanthk/async-javascript/blob/master/3-generators.js)
+> [More Code](3-generators.js)
    
 ### Links
 * [ES6 Generators in depth](http://www.2ality.com/2015/03/es6-generators.html)
@@ -201,7 +201,7 @@ The fact that generators-as-observers pause while they wait for input makes them
 * [No promises: asynchronous JavaScript with only generators](http://www.2ality.com/2015/03/no-promises.html)
 * [ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
 
-## [Async Functions (ES7)](https://github.com/vasanthk/async-javascript/blob/master/4-async-await.js)
+## [Async Functions (ES7)](4-async-await.js)
 Async functions take the idea of using generators for asynchronous programming and give them their own simple and semantic syntax.
 
 ### Converting Promises to Async Functions
@@ -405,7 +405,7 @@ console.log('hello');
 You can see that async functions still utilize built-in promises, but they do so under the hood. 
 This gives us the ability to think synchronously while within an async function, although others can invoke our async functions using the normal promises API or using async functions of their own.
 
-> [More Code](https://github.com/vasanthk/async-javascript/blob/master/4-async-await.js)
+> [More Code](4-async-await.js)
 
 ### Links
 * [Simplifying Asynchronous Coding with ES7 Async Functions](http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/)
