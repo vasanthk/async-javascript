@@ -70,7 +70,7 @@ Here are two solutions to this problem:
  
 ## Callback Hell leads to **Inversion of Control**
 
-```
+```javascript
 // A
 ajax( "..", function(..){
     // C
@@ -83,7 +83,7 @@ In a basic sense, that sort of hand-off of control doesn't regularly cause lots 
 
 A real world example would be
 
-```
+```javascript
 trackCheckoutAjax(purchaseInfo, function() {
   chargeCreditCard(purchaseInfo);
   showThankYouPage(); 
@@ -135,7 +135,42 @@ Usually promises will resolve to some result, like the response from an AJAX cal
    .catch(function (reason) {
      // Something went wrong above
    });
-```     
+```   
+  
+### Un-inversion of control using Promises
+Let's look at the same `trackCheckoutAjax` example code and see how we can un-invert the control by using some sort of event listener.
+
+```javascript
+function finish() {
+  chargeCreditCard(purchaseInfo);
+  showThankYouPage(); 
+}
+
+function error(err) {
+  logStatsError(err);
+  finish();
+}
+
+var listener = trackCheckoutAjax(purchaseInfo);
+
+listener.on('completion', finish);
+listener.on('error', error);
+```
+
+In essense, promises are a more formalized way of doing the above - there uninverting the control.
+
+```javascript
+function trackCheckout(info) {
+  return new Promise(
+    function(resolve, reject) {
+      // attempt to track the checkout
+      
+      // If succesful, call resolve()
+      // otherwise call reject(error)
+    }
+  );
+}
+```  
 
 ### Settling a promise
 Promises can exist in three states: pending, fulfilled, and rejected. Pending is the default state. From there, a promise can be “settled” into either fulfillment or rejection. Once a promise is settled, all reactions that are waiting on it are evaluated. Those on the correct branch – .then for fulfillment and .catch for rejections – are executed.
