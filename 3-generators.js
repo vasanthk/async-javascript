@@ -11,6 +11,12 @@
 /**
  * What are generators?
  * Generators are functions which can be exited and later re-entered. Their context (variable bindings) will be saved across re-entrances.
+ *
+ * In computer science, a generator is a special routine that can be used to control the iteration behaviour of a loop. In fact, all generators are iterators.
+ * A generator is very similar to a function that returns an array, in that a generator has parameters, can be called, and generates a sequence of values.
+ * However, instead of building an array containing all the values and returning them all at once, a generator yields the values one at a time,
+ * which requires less memory and allows the caller to get started processing the first few values immediately. In short, a generator looks like a function but behaves like an iterator.
+ *
  */
 
 //  Two things distinguish genFunc from a normal function declaration:
@@ -346,3 +352,25 @@ function* genFunc() {
 }
 genFunc().throw(new Error('Problem!'));
 // Error: Problem!
+
+
+/**
+ * Extras:
+ * Infinite Fibonacci sequence using generators
+ */
+
+function* fibonacci() {
+  let [prev, curr] = [0, 1];
+  while (true) {
+    yield curr;
+    [prev, curr] = [curr, prev + curr];
+  }
+}
+
+var gen = fibonacci();
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // 3
+console.log(gen.next().value); // 5
+console.log(gen.next().value); // 8
