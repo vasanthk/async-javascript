@@ -25,6 +25,8 @@ friends.forEach(function (eachName, index) {
 
 /**
  * CALLBACK HELL
+ *
+ *  A fragile, unreadable sequence of asynchronous operations, represented by nested anonymous functions, idiomatic to node.js applications
  */
 
 getData(function (a) {
