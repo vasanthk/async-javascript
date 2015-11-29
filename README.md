@@ -87,6 +87,7 @@ Here are two solutions to this problem:
 * [Understand JavaScript Callback Functions and Use Them](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)  
 * [Callback Hell](http://callbackhell.com/)
 * [Avoiding Callback hell in Node.js](http://stackabuse.com/avoiding-callback-hell-in-node-js/)
+* [Syncing Async by Kyle Simpson](https://www.youtube.com/watch?v=-wYw0bZZ38Y)
 
 ## [Promises](https://github.com/vasanthk/async-javascript/blob/master/2-promises.js)
 Promises are usually vaguely defined as “a proxy for a value that will eventually become available”. They can be used for both synchronous and asynchronous code flows, although they make asynchronous flows easier to reason about.
