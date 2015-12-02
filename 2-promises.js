@@ -6,6 +6,9 @@
  * http://www.2ality.com/2014/10/es6-promises-api.html
  * http://www.mattgreer.org/articles/promises-in-wicked-detail/
  * http://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
+ *
+ * @Exercise:
+ * http://jsbin.com/tuqukakawo/1/edit?js,console,output
  */
 
 /**
