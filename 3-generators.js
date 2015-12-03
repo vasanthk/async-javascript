@@ -1,14 +1,6 @@
 /**
  * Generators
  *
- * @Reference:
- * http://www.2ality.com/2015/03/es6-generators.html
- * https://davidwalsh.name/async-generators
- * https://www.youtube.com/watch?v=QO07THdLWQo
- * https://www.youtube.com/watch?v=3UKsXCMK6Iw
- */
-
-/**
  * What are generators?
  * Generators are functions which can be exited and later re-entered. Their context (variable bindings) will be saved across re-entrances.
  *
@@ -17,6 +9,11 @@
  * However, instead of building an array containing all the values and returning them all at once, a generator yields the values one at a time,
  * which requires less memory and allows the caller to get started processing the first few values immediately. In short, a generator looks like a function but behaves like an iterator.
  *
+ * @Reference:
+ * http://www.2ality.com/2015/03/es6-generators.html
+ * https://davidwalsh.name/async-generators
+ * https://www.youtube.com/watch?v=QO07THdLWQo
+ * https://www.youtube.com/watch?v=3UKsXCMK6Iw
  */
 
 //  Two things distinguish genFunc from a normal function declaration:
