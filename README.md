@@ -12,7 +12,7 @@ In JavaScript, functions are first-class objects; that is, functions are of the 
 
 Because functions are first-class objects, we can pass a function as an argument in another function and later execute that passed-in function or even return it to be executed later. This is the essence of using callback functions in JavaScript. 
 
-A callback function, also known as a higher-order function, is a function that is passed to another function (let’s call this other function “otherFunction”) as a parameter, and the callback function is called (or executed) inside the otherFunction.
+A callback function, is a function that is passed to another function (let’s call this other function “otherFunction”) as a parameter, and the callback function is called (or executed) inside the otherFunction.
 
 ```javascript
 //Note that the item in the click method's parameter is a function, not a variable.​ The item is a callback function
