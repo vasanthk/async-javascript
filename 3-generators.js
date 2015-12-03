@@ -106,6 +106,49 @@ function *run() {
   return yield Promise.all(citiesData);
 }
 
+/**
+ * Generators for Async handling
+ */
+// Without generator
+function makeAjaxCall(url,cb) {
+  // do some ajax fun
+  // call `cb(result)` when complete
+}
+
+makeAjaxCall( "http://some.url.1", function(result1){
+  var data = JSON.parse( result1 );
+
+  makeAjaxCall( "http://some.url.2/?id=" + data.id, function(result2){
+    var resp = JSON.parse( result2 );
+    console.log( "The value you asked for: " + resp.value );
+  });
+} );
+
+// With generator
+function request(url) {
+  // this is where we're hiding the asynchronicity,
+  // away from the main code of our generator
+  // `it.next(..)` is the generator's iterator-resume
+  // call
+  makeAjaxCall( url, function(response){
+    it.next( response );
+  } );
+  // Note: nothing returned here!
+}
+
+function *main() {
+  var result1 = yield request( "http://some.url.1" );
+  var data = JSON.parse( result1 );
+
+  var result2 = yield request( "http://some.url.2?id=" + data.id );
+  var resp = JSON.parse( result2 );
+  console.log( "The value you asked for: " + resp.value );
+}
+
+var it = main();
+it.next(); // get it all started
+
+
 
 
 // 1. Generators as iterators (data production)
