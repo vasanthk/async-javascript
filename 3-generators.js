@@ -91,6 +91,36 @@ co(function* () {
 });
 
 /**
+ * Understanding generators and async handling
+ */
+
+function getFirstName() {
+  setTimeout(function() {
+    gen.next('Jerry');
+  }, 2000);
+  // returns undefined
+  // But next() is not called until the async activity is finished
+  // After which var a is set to 'Jerry'
+}
+
+function getSecondName() {
+  setTimeout(function() {
+    gen.next('Seinfeld');
+  }, 3000);
+  // Same as getFirstName(), fn is paused until next() is called
+  // And then the value is assigned to var b
+}
+
+function* getFullName() {
+  var firstName = yield getFirstName();
+  var lastName = yield getSecondName();
+  console.log(firstName + ' ' + lastName); // Jerry Seinfeld
+}
+
+var gen = getFullName();
+gen.next(); // Initialize generator flow to first `yield`
+
+/**
  * Generators with Promises for asynchrony
  * From Talk:
  * Callback-less Asynchrony: ES6, Generators, and the next wave of JavaScript development
