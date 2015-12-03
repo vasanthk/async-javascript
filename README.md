@@ -257,6 +257,38 @@ The fact that generators-as-observers pause while they wait for input makes them
 * **Intermediate chain members:** Generators that have a parameter target. They receive data via yield and send data via target.next().
 * **Last chain member:** A generator that has no parameter target and only receives data.
 
+
+### Generators and Async
+Here's an example to explain the concepts via setTimeouts as a replacement for an async operation.
+
+```javascript
+function getFirstName() {
+  setTimeout(function() {
+    gen.next('Jerry');
+  }, 2000);
+  // returns undefined
+  // But next() is not called until the async activity is finished
+  // After which var a is set to 'Jerry'
+}
+
+function getSecondName() {
+  setTimeout(function() {
+    gen.next('Seinfeld');
+  }, 3000);
+  // Same as getFirstName(), fn is paused until next() is called
+  // And then the value is assigned to var b
+}
+
+function* getFullName() {
+  var firstName = yield getFirstName();
+  var lastName = yield getSecondName();
+  console.log(firstName + ' ' + lastName); // Jerry Seinfeld
+}
+
+var gen = getFullName();
+gen.next(); // Initialize generator flow to first `yield`
+```
+
 > [More Code](3-generators.js)
    
 ### Links
