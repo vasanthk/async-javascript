@@ -1,5 +1,7 @@
 # Evolution of Asynchronous JavaScript
 
+[Slides from my Talk](https://speakerdeck.com/vasa/taming-the-asynchronous-beast-in-javascript)
+
 **Table of Contents**
 
 - [Callbacks](#callbacks)
