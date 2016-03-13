@@ -10,7 +10,7 @@
 - [Async Functions (ES7)](#async-functions-es7)
 
 ## [Callbacks](1-callback.js)
-In JavaScript, functions are first-class objects; that is, functions are of the type Object and they can be used in a first-class manner like any other object (String, Array, Number, etc.) since they are in fact objects themselves. They can be “stored in variables, passed as arguments to functions, created within functions, and returned from functions”.
+In JavaScript, functions are first-class objects; that is, functions are of the type Object and they can be used in a first-class manner like any other object. They can be “stored in variables, passed as arguments to functions, created within functions, and returned from functions”.
 
 Because functions are first-class objects, we can pass a function as an argument in another function and later execute that passed-in function or even return it to be executed later. This is the essence of using callback functions in JavaScript. 
 
