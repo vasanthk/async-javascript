@@ -12,6 +12,8 @@
  * @Reference:
  * http://www.2ality.com/2015/03/es6-generators.html
  * http://www.dotnetcurry.com/javascript/1131/ecmascript6-async-using-generators-promises
+ * http://thejsguy.com/2016/10/15/a-practical-introduction-to-es6-generator-functions.html
+ * https://medium.com/@dtothefp/why-can-t-anyone-write-a-simple-es6-generators-tutorial-ec2bbdf6ff45#.pf0f8rfnb 
  * https://davidwalsh.name/async-generators
  * https://www.youtube.com/watch?v=QO07THdLWQo
  * https://www.youtube.com/watch?v=3UKsXCMK6Iw
