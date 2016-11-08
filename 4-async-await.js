@@ -2,6 +2,7 @@
  * Async Functions (ES7)
  *
  * @Reference:
+ * https://ponyfoo.com/articles/understanding-javascript-async-await
  * http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/
  * http://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html
  * http://h3manth.com/new/blog/2015/es7-async-await/
