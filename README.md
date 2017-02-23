@@ -509,3 +509,7 @@ This gives us the ability to think synchronously while within an async function,
 * [Simplifying Asynchronous Coding with ES7 Async Functions](http://www.sitepoint.com/simplifying-asynchronous-coding-es7-async-functions/)
 * [Jafar Husain: Async Programming in ES7 | JSConf US 2015](https://www.youtube.com/watch?v=lil4YCCXRYc)
 * [Taming the asynchronous beast with ES7](http://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html)
+
+### Videos
+
+[The Evolution Of Asynchronous JavaScript - 2017](https://pusher.com/sessions/meetup/front-end-london/the-evolution-of-asynchronous-javascript)
