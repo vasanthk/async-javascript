@@ -296,6 +296,7 @@ gen.next(); // Initialize generator flow to first `yield`
 ### Links
 * [ES6 Generators in depth](http://www.2ality.com/2015/03/es6-generators.html)
 * [The Basics Of ES6 Generators](https://davidwalsh.name/es6-generators)
+* [Writing simple asynchronous code with JavaScript generators](https://egghead.io/courses/write-simple-asynchronous-code-with-javascript-generators)
 * [No promises: asynchronous JavaScript with only generators](http://www.2ality.com/2015/03/no-promises.html)
 * [ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
 
