@@ -197,6 +197,7 @@ Rejections will also finish the race, and the race promise will be rejected. Thi
 * [JavaScript Promises ... In Wicked Detail](http://www.mattgreer.org/articles/promises-in-wicked-detail/)
 * [ES6 Promises](http://www.datchley.name/es6-promises/)
 * [Promise Patterns & Anti-Patterns](http://www.datchley.name/promise-patterns-anti-patterns/)
+* [Javascript Promise Chaining & Error Handling](https://dev.to/azizhk110/javascript-promise-chaining--error-handling)
 * [What’s the deal with jQuery Deferred objects and Promises?](http://www.vasanthk.com/jquery-promises-and-deferred-objects/)
 
 ## [Generators (ES6)](3-generators.js)
